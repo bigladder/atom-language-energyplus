@@ -1,0 +1,127 @@
+# Copyright (c) 2017 - 2018 Big Ladder Software LLC. All rights reserved.
+# See the LICENSE file for additional terms and conditions.
+
+# This file uses javascript regex (regular expressions)
+# for 'match', 'begin', and 'end' statements within patterns
+
+# To test regex logic, visit https://regex101.com/
+
+'name': 'Modelkit - EnergyPlus v8.9'
+'scopeName': 'source.v8.9.idf'
+'fileTypes': [
+  'ddy',
+  'edd',
+  'idf',
+  'imf',
+  'mdd',
+  'rdd',
+  'pxt',
+  'pxv'
+]
+'patterns': [
+  {
+    'comment': 'Line comments'
+    'begin': '!'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.idf'
+    'end': '$'
+    'name': 'comment.line.idf'
+  }
+  {
+    'comment': 'EnergyPlus Input Data'
+    'name': 'meta.energyplus.idf'
+    'begin': '^\\s*([^0-9!,;][^!,;]*)\\s*,'
+    # starts with 0 or more white spaces at start of string, first character is not a number, ! , or ;, and next characters are not ! , or ; with 0 or more white space and ,
+    'end': ';'
+    'beginCaptures':
+      '1':
+       'comment': 'Class Names'
+       'name': 'keyword.object.class.idf'
+    'patterns': [
+      {
+        'comment': 'String'
+        'match': '[^!,;<%]*[a-df-zA-DF-Z][^!,;]*'
+        # first character is not ! , or ; 0 or more times, next character is a letter that is not e or E, and next characters are not ! , or ; 0 or more times
+        'captures':
+          '0':
+            'name': 'string.idf'
+      }
+      {
+        'comment': 'Number'
+        'match': '(^|,|\\s*)\\s*(-?(0|[1-9][0-9]*)(\\.[0-9]*)?((e|E)(\\+|-)[0-9]+)?)\\s*'
+        # begins with new line or , or 0 or more white space, 0 or more white space, 0 or 1 -, 0 or 1-9 followed by 0-9, 0 or 1 (. followed by 0-9), 0 or 1 (e or E followed by + or - followed by 0 or 9), followed by 0 or more white space
+        'captures':
+          '0':
+            'name': 'constant.numeric.idf'
+      }
+      {
+        'comment': 'In-line comments'
+        'begin': '!'
+        'beginCaptures':
+          '3':
+            'name': 'punctuation.definition.comment.inline.idf'
+        'end': '$'
+        'name': 'comment.line.inline.idf'
+      }
+      {
+        'comment': 'Modelkit Inter-Field Scripts'
+        'begin': '\\s*<%\\s*'
+        # first characters are <% for Modelkit scripting content within Energyplus object input fields
+        'end':'%>'
+        'name': 'variable.modelkit.inline.idf'
+      }
+      {
+        'comment': 'Snippet Fields'
+        'match': '\\?\\?\\?'
+        # '???' is auto-filled from snippet for input field that doesn't have a default value but must have something input by the user
+        'name': 'variable.input.idf'
+      }
+    ]
+  }
+  {
+    'comment': 'Modelkit Comment'
+    'name': 'comment.block.idf'
+    'begin': '<%#\\s'
+    'end': '%>'
+    # <%# starts a comment in Modelkit templates and '#'> ends it
+    'patterns': [
+      {
+        'comment': 'Modelkit Inputs'
+        'match': '\\?\\?\\?'
+        # '???' is auto-filled from snippet for input field that doesn't have a default value but must have something input by the user
+        'name': 'variable.input.idf'
+      }
+    ]
+  }
+  {
+    'comment': 'Modelkit Header'
+    'name': 'variable.modelkit.header.idf'
+    'begin': '<%#INITIALIZE'
+    'end': '%>'
+    # <%# starts a comment in Modelkit templates and '#'> ends it
+    'patterns': [
+      {
+        'comment': 'Modelkit Inputs'
+        'match': '\\?\\?\\?'
+        # '???' is auto-filled from snippet for input field that doesn't have a default value but must have something input by the user
+        'name': 'variable.input.idf'
+      }
+    ]
+  }
+  {
+    'comment': 'Modelkit Scripts'
+    'name': 'variable.modelkit.idf'
+    'begin': '\\s*<%\\s*'
+    'end': '%>'
+    # '<%' starts a script in Modelkit templates and '#>' ends it
+    'patterns': [
+      {
+        'comment': 'Modelkit Inputs'
+        'match': '\\?\\?\\?'
+        # '???' is auto-filled from snippet for input field that doesn't have a default value but must have something input by the user
+        'name': 'variable.input.idf'
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+# Copyright (c) 2017 Big Ladder Software LLC. All rights reserved.
+# See the LICENSE file for additional terms and conditions.
+
+# This file uses javascript regex (regular expressions)
+# for 'match', 'begin', and 'end' statements within patterns
+
+# To test regex logic, visit https://regex101.com/
+
+'name': 'EnergyPlus ERR'
+'scopeName': 'source.idf'
+'fileTypes': [
+  'err'
+]
+'patterns': [
+  {
+    'comment': 'Warning Lines'
+    'match': '(\\*\\* Warning \\*\\*)'
+    # want to highlight message lines for warnings, which start with '** Warning **'
+    'name': 'meta.warning.idf'
+  }
+  {
+    'comment': 'Warning'
+    'match': 'Warning'
+    # want to highlight 'Warning' text that appears near bottom of file
+    'name': 'string.warning.idf'
+  }
+  {
+    'comment': 'Severe Lines'
+    'match': '(\\*\\* Severe  \\*\\*)'
+    # want to highlight message lines for severe errors, which start with '** Severe  **'
+    'name': 'storage.warning.idf'
+  }
+  {
+    'comment': 'Severe Errors'
+    'match': 'Severe Errors|Severe|Fatal error|Fatal'
+    # want to highlight severe or fatal text that appears near bottom of file (e.g. 'Severe Errors', 'Fatal error', etc.)
+    'name': 'keyword.warning.idf'
+  }
+  {
+    'comment': 'Terminated Final Message'
+    'match': '(   \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\* EnergyPlus Terminated).*'
+    # want to highlight final line in red background if the simulation terminated
+    'name': 'variable.warning.idf'
+  }
+  {
+    'comment': 'Successful Final Message'
+    'match': '(   \\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\*\\* EnergyPlus Completed).*'
+    # want to highlight final line in green background if the simulation completed
+    'name': 'entity.warning.idf'
+  }
+]

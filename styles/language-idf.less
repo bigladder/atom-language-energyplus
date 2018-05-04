@@ -1,0 +1,54 @@
+// Copyright (c) 2017-2018 Big Ladder Software LLC. All rights reserved.
+// See the LICENSE file for additional terms and conditions.
+
+// The ui-variables file is provided by base themes provided by Atom.
+
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+
+@import "ui-variables";
+
+atom-text-editor.editor {
+  .syntax--keyword.syntax--object.syntax--class.syntax--idf { // object class name (IDF and IDD files)
+    color: #0099ff;
+    font-weight: bold;
+  }
+  .syntax--variable.syntax--input.syntax--idf { // auto-completed input field without default value (IDF files)
+    background-color: #ffff99; // light yellow background
+    color: black;
+  }
+  .syntax--meta.syntax--warning.syntax--idf { // start of "warning" message line (ERR files)
+    background-color: #ffff99; // light yellow background
+  }
+  .syntax--storage.syntax--warning.syntax--idf { // start of "severe" message line (ERR files)
+    background-color: #ff9999; // light red background
+  }
+  .syntax--string.syntax--warning.syntax--idf { // literal string "warning" (ERR files)
+    color: orange;
+  }
+  .syntax--keyword.syntax--warning.syntax--idf { // literal strings "Severe Errors", "Severe", "Fatal error", and "Fatal" (ERR files)
+    color: red;
+  }
+  .syntax--variable.syntax--warning.syntax--idf { // final line if simulation terminated (ERR files)
+    background-color: #ff5050; // bright red background
+    color: white;
+  }
+  .syntax--entity.syntax--warning.syntax--idf { // final line if simulation completed (ERR files)
+    background-color: #00cc00; // bright green background
+    color: white;
+  }
+  .syntax--variable.syntax--idd.syntax--field.syntax--idf { // literal string "\field" (IDD file)
+    background-color: #ffff99; // light yellow background
+    color: black;
+  }
+  .syntax--entity.syntax--idd.syntax--idf { // field name that follows after "\field" (IDD file)
+    color: red;
+    font-weight: bold;
+  }
+  .syntax--string.syntax--idd.syntax--idf { // important comments like "\default" or "\autosizable" (IDD file)
+    color: orange;
+  }
+  .syntax--constant.syntax--idd.syntax--idf { // minor comments like "\type" or "\minimum" (IDD file)
+    color: green;
+  }
+}

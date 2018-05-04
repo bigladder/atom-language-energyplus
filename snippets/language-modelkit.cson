@@ -1,0 +1,179 @@
+# Copyright (c) 2017 - 2018 Big Ladder Software LLC. All rights reserved.
+# See the LICENSE.md file for additional terms and conditions.
+
+'.source.idf':
+  '<%   %> [One-line Modelkit Block]':
+    'prefix': '<%   %> [One-line]'
+    'body': """
+    <% ${1:???}  %>
+"""
+    'description': 'Brackets enclosing single line of Modelkit content within an IDF or PXT template file.'
+  '<%   %> [Multi-line Modelkit Block]':
+    'prefix': '<%   %> [Multi-line]'
+    'body': """
+<%
+${1:???}
+%>
+"""
+    'description': 'Brackets enclosing multiple lines of Modelkit content within an IDF or PXT template file.'
+  'parameter [Modelkit Parameter]':
+    'prefix': 'parameter "key"'
+    'body': """
+parameter "${1:key???}"
+"""
+    'description': 'Parameter "key" name defined in header section at top of PXT template file. This parameter can then be used as a variable in the remainder of the PXT template file after the header section. *NOTE*: this parameter DOES NOT have a default and must have a value passed from another PXT template file.'
+  'parameter [Modelkit Parameter + Default]':
+    'prefix': 'parameter "key", :default=>value'
+    'body': """
+parameter "${1:key???}", :default=>${2:value???}
+"""
+    'description': 'Parameter "key" name and default "value" defined in header section at top of PXT template file. This parameter can then be used as a variable in the remainder of the PXT template file after the header section.'
+  'parameter [Modelkit Parameter + Default + Options]':
+    'prefix': 'parameter "key", :default=>value # option1 | option2 | option3'
+    'body': """
+parameter "${1:key???}", :default=>${2:value???} # ${3:option1???} | ${3:option2???} | ${3:option3???}
+"""
+    'description': 'Parameter "key" name and default "value" defined in header section at top of PXT template file. This parameter can then be used as a variable in the remainder of the PXT template file after the header section. Comment at end of line indicates list of options that this parameter can be set to.'
+  '<%#INITIALIZE %> [Modelkit Header]':
+    'prefix': '<%#INITIALIZE %>'
+    'body': """
+<%#INITIALIZE
+${1:parameter???}
+%>
+"""
+    'description': 'Brackets enclosing Modelkit header section where parameters are defined in PXT template file.'
+  '<%= parameter  %> [Modelkit Block with Parameter Substitution]':
+    'prefix': '<%=   %>'
+    'body': """
+    <%= ${1:parameter???} %>
+"""
+    'description': 'Brackets enclosing Modelkit content that is substituting a parameter value into an IDF or PXT template file.'
+  '<%# comment  %> [Modelkit Block Comment]':
+    'prefix': '<%#   %>'
+    'body': """
+    <%# ${1:comment???} %>
+"""
+    'description': 'Brackets enclosing Modelkit comment within an IDF or PXT template file.'
+  '<% if (X) %> <% end %> [Modelkit Line Conditional]':
+    'prefix': '<% if / end %>'
+    'body': """
+<% if (${1:???}) %>
+
+<% end %>
+"""
+    'description': 'if / end statement block checking code "X" within parentheses. These lines should be used between IDF input field lines.'
+  '<% if (X) %> <% else %> <% end %> [Modelkit Line Conditional]':
+    'prefix': '<% if / else / end %>'
+    'body': """
+<% if (${1:???}) %>
+
+<% else %>
+
+<% end %>
+"""
+    'description': 'if / else / end statement block checking code "X" within parentheses. These lines should be used between IDF input field lines.'
+  '<% if (X) %> <% elsif (Y) %> <% end %> [Modelkit Line Conditional]':
+    'prefix': '<% if / elsif / end %>'
+    'body': """
+<% if (${1:???}) %>
+
+<% elsif (${2:???}) %>
+
+<% end %>
+"""
+    'description': 'if / elsif / end statement block checking code "X" within parentheses first and then code "Y" within parentheses second. These lines should be used between IDF input field lines.'
+  '<% if (X) %> <% elsif (Y) %> <% else %> <% end %> [Modelkit Line Conditional]':
+    'prefix': '<% if / elsif / else / end %>'
+    'body': """
+<% if (${1:???}) %>
+
+<% elsif (${2:???}) %>
+
+<% else %>
+
+<% end %>
+"""
+    'description': 'if / elsif / else / end statement block checking code "X" within parentheses first and then code "Y" within parentheses second. These lines should be used between IDF input field lines.'
+  ' if (X) end [Modelkit Block Conditional]':
+    'prefix': 'if / end'
+    'body': """
+if (${1:???})
+
+end
+"""
+    'description': 'if / end statement block checking code "X" within parentheses. These lines should be used within continuous Ruby block bound by brackets.'
+  ' if (X) else end [Modelkit Block Conditional]':
+    'prefix': 'if / else / end'
+    'body': """
+if (${1:???})
+
+else
+
+end
+"""
+    'description': 'if / else / end statement block checking code "X" within parentheses. These lines should be used within continuous Ruby block bound by brackets.'
+  ' if (X) elsif (Y) end [Modelkit Block Conditional]':
+    'prefix': 'if / elsif / end'
+    'body': """
+if (${1:???})
+
+elsif (${2:???})
+
+end
+"""
+    'description': 'if / elsif / end statement block checking code "X" within parentheses first and then code "Y" within parentheses second. These lines should be used within continuous Modelkit block bound by brackets.'
+  ' if (X) elsif (Y) else end [Modelkit Block Conditional]':
+    'prefix': 'if / elsif / else / end'
+    'body': """
+if (${1:???})
+
+elsif (${2:???})
+
+else
+
+end
+"""
+    'description': 'if / elsif / else / end statement block checking code "X" within parentheses first and then code "Y" within parentheses second. These lines should be used within continuous Ruby block bound by brackets.'
+  'insert \'path\' [Modelkit One-Line Template Insert]':
+    'prefix': 'insert \'path\''
+    'body': """
+insert '${1:path???}'
+"""
+    'description': 'Inserts text of file at "path" location. This approach does not pass parameter values, so the default values of the file at "path" location will be used.'
+  'insert \'path\', :parameter=>value [Modelkit One-Line Template Insert]':
+    'prefix': 'insert \'path\', :parameter=>value'
+    'body': """
+insert '${1:path???}', :${2:parameter???}=>${3:value???}
+"""
+    'description': 'Inserts text of file at "path" location. This approach passes a "value for" to override the default value of a "parameter" defined in the header of the file at "path" location.'
+  'insert \'path\', :parameter=>value [Modelkit Multi-Line Template Insert]':
+    'prefix': 'insert \'path\',  :parameter=>value'
+    'body': """
+insert '${1:path???}',
+  :${2:parameter???}=>${3:value???}
+"""
+    'description': 'Inserts text of file at "path" location. This approach passes a "value for" to override the default value of a "parameter" defined in the header of the file at "path" location.'
+  'for X in ARRAY Z end [Modelkit Conditional]':
+    'prefix': 'for X in ARRAY Z end'
+    'body': """
+for ${1:item???} in ${2:array???}
+  ${3:???}
+end
+"""
+    'description': 'Conditional for loop that repeats code "Z" for each item "X" in "ARRAY".'
+  'all_zones [Modelkit Zones Matrix]':
+    'prefix': 'all_zones'
+    'body': """
+all_zones = [
+  [x_zone_1, y_zone_1, z_zone_1],
+  [x_zone_2, y_zone_2, z_zone_2],
+  [x_zone_3, y_zone_3, z_zone_3]
+]
+
+for zone in all_zones
+  x = zone[0]
+  y = zone[1]
+  z = zone[2]
+end
+"""
+    'description': 'Nested arrays of zone parameters, where each row\'s array represents details for one zone in the model. After the nestedy arrays are defined, a for loop assigns array itmes to parameters according to index.'

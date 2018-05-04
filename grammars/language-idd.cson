@@ -1,0 +1,59 @@
+# Copyright (c) 2017 Big Ladder Software LLC. All rights reserved.
+# See the LICENSE file for additional terms and conditions.
+
+# This file uses javascript regex (regular expressions)
+# for 'match', 'begin', and 'end' statements within patterns
+
+# To test regex logic, visit https://regex101.com/
+
+'name': 'EnergyPlus IDD'
+'scopeName': 'source.idf'
+'fileTypes': [
+  'idd'
+]
+'patterns': [
+  {
+    'comment': 'Line comments'
+    'begin': '!|(\\\\memo)|(\\\\note)'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.definition.comment.idf'
+    'end': '$'
+    'name': 'comment.line.idf'
+  }
+  {
+    'comment': 'EnergyPlus Object Class'
+    'name': 'keyword.object.class.idf'
+    'match': '^\\s*([a-zA-Z]+[:a-zA-Z]*,)'
+    # 0 or more white space, any letter for first character, any letter and : for next characters, ending with ,
+  }
+  {
+    'comment': 'Field IDD Comments'
+    'name': 'variable.idd.field.idf'
+    'begin': '[\\\\](field)'
+    # \ followed by 'field'
+    'end': '$'
+    'patterns': [
+      {
+        'comment': 'Field Name'
+        'match': '\\s[A-Z].*'
+        # first character is blank space, then captial letter, then any character 0 or more times
+        'captures':
+          '0':
+            'name': 'entity.idd.idf'
+      }
+    ]
+  }
+  {
+    'comment': 'Important IDD Comments'
+    'name': 'string.idd.idf'
+    'match': '[\\\\]((default)|(autosizable)|(autocalculatable)|(min-fields)|(required-field)).*'
+    # \ followed by important IDD comments (e.g. default, autosizable, etc.) and any character 0 or more times
+  }
+  {
+    'comment': 'Minor IDD Comments'
+    'name': 'constant.idd.idf'
+    'match': '[\\\\]((type)|(key)|(minimum)>?|(maximum)<?)'
+    # \ followed by minor IDD comments (e.g. type, minimum, etc.)
+  }
+]

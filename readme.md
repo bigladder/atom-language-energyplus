@@ -1,4 +1,4 @@
-# EnergyPlus Language Package for Atom
+# EnergyPlus language support in Atom
 
 Syntax highlighting and object auto-completion for EnergyPlus and Modelkit files
 
@@ -24,7 +24,7 @@ This package also leverages snippets to auto-complete typical code blocks used i
 
 To use EnergyPlus snippets, type in the object class name, then select the appropriate object class name preceded by the green snippets arrow by clicking on it or using arrow keys to highlight the object and then hit the **Tab** or **Enter** key. At the bottom of the auto-complete window, you will be able to see a description of what that object represents in the building energy model. This description is taken from the EnergyPlus Input Data Dictionary (IDD) file. At the end of that description is a URL labeled `More ..`, which is a link to the web-based EnergyPlus Input-Output Reference documentation for that object. The gif below shows an example of using snippets to generate a `Version` and `Building` object, as well as how to access web-based documentation for the `Building` object.
 
-![Snippet example](http://goo.gl/dLA1Zv)
+![Snippet example](http://goo.gl/bMJzon)
 
 To use Modelkit snippets, type in the initial characters of the code black you want to insert. Select the appropriate snippet in the auto-complete window the same way you would for an EnergyPlus snippet. Note that in order to view the Modelkit snippets beginning with "<%" in the auto-complete window, you must check the "Enable Extended Unicode Support" box in the settings for the 'autocomplete-plus' package that comes with Atom. Also note that the auto-complete window will disappear if you include "%".
 

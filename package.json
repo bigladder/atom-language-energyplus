@@ -1,6 +1,6 @@
 {
   "name": "language-energyplus",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Syntax highlighting and object auto-completion for EnergyPlus and Modelkit files.",
   "keywords": [
     "EnergyPlus",

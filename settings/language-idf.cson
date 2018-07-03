@@ -1,8 +1,8 @@
 # Copyright (c) 2017 - 2018 Big Ladder Software LLC. All rights reserved.
 # See the LICENSE.md file for additional terms and conditions.
 
-# Toggles on soft wrap in Atom editor by default
+# Toggles off soft wrap in Atom editor by default
 
 '.source.v8.9.idf':
   'editor':
-    'softWrap': true
+    'softWrap': false

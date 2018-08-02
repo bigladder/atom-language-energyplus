@@ -44,6 +44,10 @@ These commands can be used for a single line or multiple selected lines. If all 
 
 The keybindings are defined in `keymaps/language-idf-keymap.json` and can be reconfigured, if you desire.
 
+## Soft Wrap
+
+This package turns off Atom's **Soft Wrap** feature for EnergyPlus and Modelkit files by default. This can be reconfigured in `settings/language-idf.cson`, if you desire.
+
 ## Copyright
 
 All files copyright (c) 2017 - 2018 Big Ladder Software. All rights reserved.

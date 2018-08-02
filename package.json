@@ -16,6 +16,7 @@
     "url": "https://github.com/bigladder/atom-language-energyplus.git"
   },
   "license": "BSD-3-Clause",
+  "main": "./lib/language-idf.js",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },

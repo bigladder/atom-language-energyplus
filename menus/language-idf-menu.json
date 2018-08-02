@@ -1,0 +1,51 @@
+{
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Language EnergyPlus",
+          "submenu": [
+            {
+              "label": "Add EnergyPlus Comments",
+              "command": "language-energyplus:add-energyplus-comments"
+            },
+            {
+              "label": "Remove EnergyPlus Comments",
+              "command": "language-energyplus:remove-energyplus-comments"
+            },
+            {
+              "label": "Add Modelkit Comments",
+              "command": "language-energyplus:add-modelkit-comments"
+            },
+            {
+              "label": "Remove Modelkit Comments",
+              "command": "language-energyplus:remove-modelkit-comments"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+"context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Add EnergyPlus Comments",
+        "command": "language-energyplus:add-energyplus-comments"
+      },
+      {
+        "label": "Remove EnergyPlus Comments",
+        "command": "language-energyplus:remove-energyplus-comments"
+      },
+      {
+        "label": "Add Modelkit Comments",
+        "command": "language-energyplus:add-modelkit-comments"
+      },
+      {
+        "label": "Remove Modelkit Comments",
+        "command": "language-energyplus:remove-modelkit-comments"
+      }
+    ]
+  }
+}

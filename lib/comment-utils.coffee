@@ -29,7 +29,7 @@ module.exports =
     # loop over lines in range to see if all lines already include comments
     for row in range.getRows()
       text = editor.lineTextForBufferRow(row)
-      if this.isCommented(text, ext, range, prefix)
+      if this.isCommented(text, prefix)
         commentedLines += 1
       if row != range.getRows()[range.getRows().length-1]
         editor.moveDown(1)
@@ -58,7 +58,7 @@ module.exports =
     return text.replace /^\s+/g, ""
 
   # check if comment character already exists
-  isCommented: (text, ext, range, prefix) ->
+  isCommented: (text, prefix) ->
     # get character length of comment prefix
     prefixLength = prefix.length
     commentStartMatch = false

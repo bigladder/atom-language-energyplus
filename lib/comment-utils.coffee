@@ -3,8 +3,8 @@
 # found in the LICENSE file.
 
 module.exports =
-  toggleComments: (range, ext, editor, prefix, action) ->
-    if prefix == "!"
+  toggleComments: (range, ext, editor, prefix) ->
+    if prefix == "! "
       # case-insensitive check for EnergyPlus file extension
       if (not /idf/i.test(ext)) && (not /pxt/i.test(ext)) && (not /imf/i.test(ext))
         atom.notifications.addError('Cannot apply EnergyPlus comments to this file type', (
@@ -13,7 +13,7 @@ module.exports =
           description: 'EnergyPlus comments can be applied to files that end in IDF, IMF, or PXT.'
         ))
         return false
-    else if prefix == "#"
+    else if prefix == "# "
       # case-insensitive check for Modelkit file extension
       if (not /pxt/i.test(ext)) && (not /imf/i.test(ext))
         atom.notifications.addError('Cannot apply Modelkit comments to this file type', (
@@ -22,11 +22,30 @@ module.exports =
           description: 'Modelkit comments can be applied to files that end in IMF or PXT.'
         ))
         return false
-    if action == "add"
-      this.addComments(ext, range, editor, prefix)
-    else if action == "remove"
-      this.removeComments(ext, range, editor, prefix)
+    # move cursor to beginning of first line in Range
+    editor.setCursorBufferPosition([range.getRows()[0], 0])
+    # create variable to count number of commented lines in Selection
+    commentedLines = 0
+    # loop over lines in range to see if all lines already include comments
+    for row in range.getRows()
+      text = editor.lineTextForBufferRow(row)
+      if this.isCommented(text, ext, range, prefix)
+        commentedLines += 1
+      if row != range.getRows()[range.getRows().length-1]
+        editor.moveDown(1)
 
+    # move cursor to beginning of first line in Range
+    editor.setCursorBufferPosition([range.getRows()[0], 0])
+    # loop over lines in range to toggle comments
+    for row in range.getRows()
+      text = editor.lineTextForBufferRow(row)
+      # check if all selected lines already include comments
+      if commentedLines == range.getRows().length
+        this.removeComment(text, editor, prefix)
+      else
+        this.addComment(editor, prefix)
+      if row != range.getRows()[range.getRows().length-1]
+        editor.moveDown(1)
 
   # get extension of working file
   getExtension: (fileName) ->
@@ -35,28 +54,8 @@ module.exports =
     # return final string in array
     return components[components.length-1]
 
-  addComments: (ext, range, editor, prefix) ->
-    # move cursor to beginning of first line in Range
-    editor.setCursorBufferPosition([range.getRows()[0], 0])
-    # loop over lines in range
-    for row in range.getRows()
-      text = editor.lineTextForBufferRow(row)
-      # check if line is only white space
-      if /\S/.test(text)
-        this.addComment(editor, prefix)
-      if row != range.getRows()[range.getRows().length-1]
-        editor.moveDown(1)
-
-  removeComments: (ext, range, editor, prefix) ->
-    # move cursor to beginning of first line in Range
-    editor.setCursorBufferPosition([range.getRows()[0], 0])
-    # loop over lines in range
-    for row in range.getRows()
-      text = editor.lineTextForBufferRow(row)
-      if this.isCommented(text, ext, range, prefix)
-        this.removeComment(text, editor, prefix)
-      if row != range.getRows()[range.getRows().length-1]
-        editor.moveDown(1)
+  lstrip: (text) ->
+    return text.replace /^\s+/g, ""
 
   # check if comment character already exists
   isCommented: (text, ext, range, prefix) ->
@@ -64,7 +63,7 @@ module.exports =
     prefixLength = prefix.length
     commentStartMatch = false
     # check if first character in selected text line matches comment prefix
-    commentStartMatch = (text.trim().substr(0, prefixLength) == prefix)
+    commentStartMatch = (this.lstrip(text).substr(0, prefixLength) == prefix)
     return commentStartMatch
 
   # remove first comment character in line

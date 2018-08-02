@@ -47,6 +47,9 @@ module.exports =
       if row != range.getRows()[range.getRows().length-1]
         editor.moveDown(1)
 
+    # return editor to original range after toggling comments
+    editor.setSelectedBufferRange(range)
+
   # get extension of working file
   getExtension: (fileName) ->
     # split working file name into array of strings between "."

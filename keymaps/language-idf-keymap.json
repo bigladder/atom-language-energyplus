@@ -1,0 +1,6 @@
+{
+  "atom-workspace": {
+    "shift-ctrl-1": "language-energyplus:toggle-energyplus-comments",
+    "shift-ctrl-3": "language-energyplus:toggle-modelkit-comments"
+  }
+}

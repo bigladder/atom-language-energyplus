@@ -32,6 +32,18 @@ To use Modelkit snippets, type in the initial characters of the code black you w
 
 This package leverages three grammar CSON files (e.g. `grammars/language-err.cson`) to define different categories of text that appear in EnergyPlus files using Javascript regex (regular expressions). Once those are defined, the styles LESS file (e.g. `styles/language-idf.less`) defines what text color and background highlighting formats to apply to some of those text categories. For example, EnergyPlus object class names (*keyword.object.class.idf*) appear in blue, bold text and the final line in ERR files will either have green background highlighting if the most recent simulation succeeded (*entity.warning.idf*) or red background highlighting if the most recent simulation terminated (*variable.warning.idf*). The grammar CSON files and styles LESS file can be reconfigured, if you desire.
 
+## Toggle Comments
+
+This package includes two commands for toggling comments: **Toggle EnergyPlus Comments** for adding and removing "! " from the beginning of lines in IDF, IMF, and PXT files, and **Toggle Modelkit Comments** for adding and removing "# " from the beginning of lines in IMF and PXT files. There are three options for accessing these commands:
+
+- From the *Packages / Language EnergyPlus* menu
+- Right-clicking within an active file
+- Using keybindings (`shift-ctrl-1` for **Toggle EnergyPlus Comments** and `shift-ctrl-3` for **Toggle Modelkit Comments**)
+
+These commands can be used for a single line or multiple selected lines. If all selected lines begin with comment characters, then the comment characters will be removed. Otherwise, the commands will add comment characters to the beginning of each selected line. This is the same behavior as the native **Toggle Comments** command in Atom found under the *Edit / Toggle Comments* menu for standard filetypes.
+
+The keybindings are defined in `keymaps/language-idf-keymap.json` and can be reconfigured, if you desire.
+
 ## Copyright
 
 All files copyright (c) 2017 - 2018 Big Ladder Software. All rights reserved.

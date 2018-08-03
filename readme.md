@@ -30,7 +30,7 @@ To use Modelkit snippets, type in the initial characters of the code black you w
 
 ## Text Color and Highlighting
 
-This package leverages three grammar CSON files (e.g. `grammars/language-err.cson`) to define different categories of text that appear in EnergyPlus files using Javascript regex (regular expressions). Once those are defined, the styles LESS file (e.g. `styles/language-idf.less`) defines what text color and background highlighting formats to apply to some of those text categories. For example, EnergyPlus object class names (*keyword.object.class.idf*) appear in blue, bold text and the final line in ERR files will either have green background highlighting if the most recent simulation succeeded (*entity.warning.idf*) or red background highlighting if the most recent simulation terminated (*variable.warning.idf*). The grammar CSON files and styles LESS file can be reconfigured, if you desire.
+This package leverages four grammar CSON files (e.g. `grammars/language-err.cson`) to define different categories of text that appear in EnergyPlus and Modelkit files using Javascript regex (regular expressions). Once those are defined, the styles LESS file (e.g. `styles/language-idf.less`) defines what text color and background highlighting formats to apply to some of those text categories. For example, EnergyPlus object class names (*keyword.object.class.idf*) appear in blue, bold text and the final line in ERR files will either have green background highlighting if the most recent simulation succeeded (*entity.warning.idf*) or red background highlighting if the most recent simulation terminated (*variable.warning.idf*). The grammar CSON files and styles LESS file can be reconfigured, if you desire.
 
 ## Toggle Comments
 

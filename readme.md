@@ -50,7 +50,7 @@ This package turns off Atom's **Soft Wrap** feature for EnergyPlus and Modelkit 
 
 ## Copyright
 
-All files copyright (c) 2017 - 2018 Big Ladder Software. All rights reserved.
+All files copyright (c) 2017-2018 Big Ladder Software. All rights reserved.
 
 ## License
 

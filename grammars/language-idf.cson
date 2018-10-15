@@ -6,8 +6,8 @@
 
 # To test regex logic, visit https://regex101.com/
 
-'name': 'Modelkit - EnergyPlus v8.9'
-'scopeName': 'source.v8.9.idf'
+'name': 'Modelkit - EnergyPlus v9.0'
+'scopeName': 'source.v9.0.idf'
 'fileTypes': [
   'ddy',
   'edd',

@@ -3,6 +3,6 @@
 
 # Toggles off soft wrap in Atom editor by default
 
-'.source.v8.9.idf':
+'.source.v9.0.idf':
   'editor':
     'softWrap': false

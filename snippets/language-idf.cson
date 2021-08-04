@@ -9871,6 +9871,37 @@ Pump:VariableSpeed:Condensate,
 """
     'description': 'This pump model is described in the ASHRAE secondary HVAC toolkit.Variable Speed Condensate pump for Steam Systems'
     'descriptionMoreURL': 'https://bigladdersoftware.com/epx/docs/9-0/input-output-reference/group-pumps.html#pumpvariablespeedcondensate'
+  'PythonPlugin:SearchPaths [EnergyPlus 9.4, min fields: 4]':
+    'prefix': 'PythonPlugin:SeachPaths'
+    'body':"""
+PythonPlugin:SearchPaths,
+  ${1:???},                       !- Name
+  ${2:???},                       !- Add Current Working Directory to Search Path
+  ${3:???},                       !- Add Input File Directory to Search Path
+  ${4:???};                       !- Search Path N
+"""
+    'description': 'Once EnergyPlus initiates a Python process, it will need to know where to search for user-defined plugin script files A Python search path is managed that contains a list of possible folders where Python will search when encountering an import statement.'
+    'descriptionMoreURL': 'https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-python-plugins.html#subsec:plugin-search-paths'
+  'PythonPlugin:Instance [Energyplus 9.4, min fields: 4]':
+    'prefix': 'PythonPlugin:Instance'
+    'body':"""
+PythonPlugin:Instance,
+  ${1:???},                       !- Name
+  ${2:???},                       !- Run During Warmup Days
+  ${3:???},                       !- Python Module Name
+  ${4:???};                       !- Plugin Class Name
+"""
+    'description': 'This object captures a single plugin instance for EnergyPlus. As previously described, a single plugin may be called at multiple calling points if there are multiple functions overridden. A single instance is analogous to a single user-defined class that inherits the EnergyPlusPlugin base class.'
+    'descriptionMoreURL':'https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-python-plugins.html#pythonplugininstance'
+  'PythonPlugin:Variables [EnergyPlus 9.4, min fields: 2]':
+    'prefix': 'PythonPlugin:Variables'
+    'body':"""
+PythonPlugin:Variables,
+  ${1:???},                       !- Name
+  ${2:???};                       !- Variable Name N
+"""
+    'description': 'This object defines the “global” variables described elsewhere in this section. The term global is carried along as it is the convention used in traditional EMS applications.'
+    'descriptionMoreURL': 'https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-python-plugins.html#pythonpluginvariables'  
   'Refrigeration:AirChiller [EnergyPlus 9.0, min fields: 23]':
     'prefix': 'Refrigeration:AirChiller'
     'body': """
